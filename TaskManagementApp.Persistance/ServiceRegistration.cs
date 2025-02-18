@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TaskManagementApp.Application.Interfaces;
 using TaskManagementApp.Persistance.Context;
+using TaskManagementApp.Persistance.Repositories;
 
 namespace TaskManagementApp.Persistance;
 
@@ -13,5 +15,8 @@ public static class ServiceRegistration
         {
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
+
+
+        services.AddScoped<IUserRepository, UserRepository>();
     }
 }
