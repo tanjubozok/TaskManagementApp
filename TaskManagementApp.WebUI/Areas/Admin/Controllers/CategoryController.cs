@@ -4,7 +4,20 @@
 [Authorize(Roles = "Admin")]
 public class CategoryController : Controller
 {
-    public IActionResult List()
+    private readonly IMediator _mediator;
+
+    public CategoryController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    public async Task<IActionResult> List()
+    {
+        var result = await _mediator.Send(new CategoryListRequest());
+        return View(result.Data);
+    }
+
+    public IActionResult Create()
     {
         return View();
     }
