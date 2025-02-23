@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using TaskManagementApp.Application.Dtos;
+using TaskManagementApp.Application.Extensions;
 using TaskManagementApp.Application.Interfaces;
 using TaskManagementApp.Application.Requests;
 using TaskManagementApp.Application.Validators;
@@ -22,16 +23,15 @@ public class LoginRequestHandler : IRequestHandler<LoginRequst, Result<LoginResp
 
         if (validationResult.IsValid)
         {
-            return new Result<LoginResponseDto?>(new LoginResponseDto("", "", 1), true, null, null);
+            var user = await _user.GetByFilterAsync(x => x.Username == request.Username && x.Password == request.Password);
+            if (user is not null)
+                return new Result<LoginResponseDto?>(new LoginResponseDto(user.Name, user.Surname, user.AppRoleId), true, null, null);
+            else
+                return new Result<LoginResponseDto?>(null, false, "Kullanıcı adı veya şifre hatalıdır", null);
         }
         else
         {
-            var errorList = new List<ValidationError>();
-            var erors = validationResult.Errors.ToList();
-            foreach (var error in erors)
-            {
-                errorList.Add(new ValidationError(error.PropertyName, error.ErrorMessage));
-            }
+            var errorList = validationResult.Errors.ToMap();
 
             return new Result<LoginResponseDto?>(null, false, "ValidationError", errorList);
         }

@@ -7,7 +7,7 @@ using TaskManagementApp.Persistance.Repositories;
 
 namespace TaskManagementApp.Persistance;
 
-public static class ServiceRegistration
+public static class ServiceRegistrations
 {
     public static void AddPersistanceServices(this IServiceCollection services, IConfiguration configuration)
     {
