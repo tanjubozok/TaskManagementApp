@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TaskManagementApp.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TaskManagementApp.Persistance.Configurations;
 
@@ -19,7 +17,7 @@ public class AppTaskConfiguration : IEntityTypeConfiguration<AppTask>
         builder.Property(x => x.Description).IsRequired(true);
         builder.Property(x => x.Description).HasMaxLength(2048);
 
-        builder.Property(x=>x.AppUserId).IsRequired(true);
+        builder.Property(x => x.AppUserId).IsRequired(true);
 
         builder.Property(x => x.CategoryId).IsRequired(true);
 

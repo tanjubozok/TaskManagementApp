@@ -1,0 +1,10 @@
+﻿global using FluentValidation;
+global using MediatR;
+global using System.Linq.Expressions;
+global using TaskManagementApp.Application.Dtos;
+global using TaskManagementApp.Application.Enums;
+global using TaskManagementApp.Application.Extensions;
+global using TaskManagementApp.Application.Interfaces;
+global using TaskManagementApp.Application.Requests;
+global using TaskManagementApp.Application.Validators;
+global using TaskManagementApp.Domain.Entities;

@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TaskManagementApp.Domain.Entities;
-using TaskManagementApp.Persistance.Configurations;
+﻿using TaskManagementApp.Persistance.Configurations;
 
 namespace TaskManagementApp.Persistance.Context;
 

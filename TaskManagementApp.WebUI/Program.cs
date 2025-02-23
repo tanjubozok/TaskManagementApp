@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using TaskManagementApp.Application.Extensions;
 using TaskManagementApp.Persistance;
 
@@ -25,10 +24,8 @@ builder.Services.AddApplicationServices();
 var app = builder.Build();
 
 app.UseStaticFiles();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 
 //app.MapDefaultControllerRoute();
 app.MapControllerRoute(

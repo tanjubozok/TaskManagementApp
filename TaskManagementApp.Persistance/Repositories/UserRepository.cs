@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using TaskManagementApp.Application.Interfaces;
-using TaskManagementApp.Domain.Entities;
-using TaskManagementApp.Persistance.Context;
-
-namespace TaskManagementApp.Persistance.Repositories;
+﻿namespace TaskManagementApp.Persistance.Repositories;
 
 public class UserRepository : IUserRepository
 {
@@ -13,6 +7,12 @@ public class UserRepository : IUserRepository
     public UserRepository(TaskManagementContext context)
     {
         _context = context;
+    }
+
+    public async Task<int> CreateUserAsync(AppUser user)
+    {
+        await _context.AppUsers.AddAsync(user);
+        return await _context.SaveChangesAsync();
     }
 
     public async Task<AppUser?> GetByFilterAsync(Expression<Func<AppUser, bool>> filter, bool asNoTracking = true)

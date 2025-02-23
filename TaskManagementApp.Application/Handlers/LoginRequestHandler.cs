@@ -1,12 +1,4 @@
-﻿using MediatR;
-using TaskManagementApp.Application.Dtos;
-using TaskManagementApp.Application.Enums;
-using TaskManagementApp.Application.Extensions;
-using TaskManagementApp.Application.Interfaces;
-using TaskManagementApp.Application.Requests;
-using TaskManagementApp.Application.Validators;
-
-namespace TaskManagementApp.Application.Handlers;
+﻿namespace TaskManagementApp.Application.Handlers;
 
 public class LoginRequestHandler : IRequestHandler<LoginRequst, Result<LoginResponseDto?>>
 {

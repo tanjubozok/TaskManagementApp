@@ -1,13 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using TaskManagementApp.Application.Dtos;
-using TaskManagementApp.Application.Requests;
-
-namespace TaskManagementApp.WebUI.Controllers;
+﻿namespace TaskManagementApp.WebUI.Controllers;
 
 public class AccountController : Controller
 {
@@ -25,12 +16,12 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(LoginRequst requst)
+    public async Task<IActionResult> Login(LoginRequst request)
     {
-        var result = await _mediator.Send(requst);
+        var result = await _mediator.Send(request);
         if (result.IsSuccess && result.Data is not null)
         {
-            await SetAuthCookie(result.Data, requst.RememberMe);
+            await SetAuthCookie(result.Data, request.RememberMe);
 
             if (result.Data.Role == Application.Enums.RoleTypes.Admin)
             {
@@ -52,13 +43,39 @@ public class AccountController : Controller
             {
                 ModelState.AddModelError("", result.ErrorMessage ?? "Bilinmeyen bir hata oluştu");
             }
-            return View(requst);
+            return View(request);
         }
     }
 
+    [HttpGet]
     public IActionResult Register()
     {
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Register(RegisterRequest request)
+    {
+        var result = await _mediator.Send(request);
+        if (result.IsSuccess)
+        {
+            return RedirectToAction("Login", "Account");
+        }
+        else
+        {
+            if (result.Errors is not null && result.Errors.Count > 0)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", result.ErrorMessage ?? "Bilinmeyen bir hata oluştu");
+            }
+            return View(request);
+        }
     }
 
     public IActionResult ForgotPassword()
