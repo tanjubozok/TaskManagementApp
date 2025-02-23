@@ -2,9 +2,9 @@
 
 [Area("Admin")]
 [Authorize(Roles = "Admin")]
-public class HomeController : Controller
+public class CategoryController : Controller
 {
-    public IActionResult Index()
+    public IActionResult List()
     {
         return View();
     }

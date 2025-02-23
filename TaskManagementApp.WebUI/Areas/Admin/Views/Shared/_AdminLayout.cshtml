@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>@TempData["Title"] | TaskManagement</title>
+
+    <link rel="icon" type="image/x-icon" href="~/admin-themes/assets/favicon.ico" />
+    <link href="~/admin-themes/css/styles.css" rel="stylesheet" />
+    <link href="~/libs/font-awesome/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light">
+                <i class="fa-solid fa-thumbtack"></i>
+                Task Management
+            </div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                    <i class="fa-solid fa-house"></i>
+                    Anasayfa
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" asp-area="Admin" asp-controller="Category" asp-action="List">
+                    <i class="fa-solid fa-layer-group"></i>
+                    Kategoriler
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    İşler
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
+                    <i class="fa-solid fa-list-check"></i>
+                    Raporlar
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
+                    <i class="fa-solid fa-users"></i>
+                    Kullanıcılar
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">
+                    <i class="fa-solid fa-id-card"></i>
+                    Roller
+                </a>
+            </div>
+        </div>
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-secondary" id="sidebarToggle">
+                        <i class="fa-solid fa-toggle-on"></i>
+                    </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                                    <i class="fa-solid fa-house"></i>
+                                    Anasayfa
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i>
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#!">
+                                        <i class="fa-solid fa-user-gear"></i>
+                                        Profil
+                                    </a>
+                                    <a class="dropdown-item" href="#!">
+                                        <i class="fa-solid fa-address-card"></i>
+                                        İşler
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        Çıkış Yap
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <p>
+                    @RenderBody()
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/libs/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/admin-themes/js/scripts.js"></script>
+</body>
+</html>

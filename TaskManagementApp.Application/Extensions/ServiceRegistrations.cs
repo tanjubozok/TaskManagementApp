@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace TaskManagementApp.Application.Extensions;
+﻿namespace TaskManagementApp.Application.Extensions;
 
 public static class ServiceRegistrations
 {
@@ -10,5 +8,7 @@ public static class ServiceRegistrations
         {
             configuration.RegisterServicesFromAssembly(typeof(LoginRequst).Assembly);
         });
+
+        services.AddAutoMapper(typeof(MappingProfile));
     }
 }

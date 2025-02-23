@@ -1,4 +1,4 @@
-﻿namespace TaskManagementApp.Application.Handlers;
+﻿namespace TaskManagementApp.Application.Handlers.AccountHandlers;
 
 public class RegisterRequestHandler : IRequestHandler<RegisterRequest, Result<NoData>>
 {

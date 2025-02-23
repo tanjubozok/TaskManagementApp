@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using TaskManagementApp.Persistance.Repositories;
-
-namespace TaskManagementApp.Persistance;
+﻿namespace TaskManagementApp.Persistance;
 
 public static class ServiceRegistrations
 {
@@ -14,5 +10,6 @@ public static class ServiceRegistrations
         });
 
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
     }
 }
