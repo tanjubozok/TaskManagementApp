@@ -13,9 +13,8 @@ public static class ServiceRegistration
     {
         services.AddDbContext<TaskManagementContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
-
 
         services.AddScoped<IUserRepository, UserRepository>();
     }
