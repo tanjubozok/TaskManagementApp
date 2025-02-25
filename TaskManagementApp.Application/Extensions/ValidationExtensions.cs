@@ -1,6 +1,4 @@
-﻿using FluentValidation.Results;
-
-namespace TaskManagementApp.Application.Extensions;
+﻿namespace TaskManagementApp.Application.Extensions;
 
 public static class ValidationExtensions
 {

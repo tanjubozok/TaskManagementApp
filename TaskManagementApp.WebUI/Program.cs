@@ -1,6 +1,3 @@
-using TaskManagementApp.Application.Extensions;
-using TaskManagementApp.Persistance;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();

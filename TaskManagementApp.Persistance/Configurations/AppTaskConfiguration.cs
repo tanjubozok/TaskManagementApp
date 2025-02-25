@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace TaskManagementApp.Persistance.Configurations;
+﻿namespace TaskManagementApp.Persistance.Configurations;
 
 public class AppTaskConfiguration : IEntityTypeConfiguration<AppTask>
 {

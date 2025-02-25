@@ -1,6 +1,4 @@
-﻿using TaskManagementApp.Persistance.Configurations;
-
-namespace TaskManagementApp.Persistance.Context;
+﻿namespace TaskManagementApp.Persistance.Context;
 
 public class TaskManagementContext : DbContext
 {

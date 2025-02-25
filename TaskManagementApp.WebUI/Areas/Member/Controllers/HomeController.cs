@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace TaskManagementApp.WebUI.Areas.Member.Controllers;
+﻿namespace TaskManagementApp.WebUI.Areas.Member.Controllers;
 
 [Area("Member")]
 [Authorize]
