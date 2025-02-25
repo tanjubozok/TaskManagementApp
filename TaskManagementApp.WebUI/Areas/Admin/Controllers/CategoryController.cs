@@ -1,4 +1,6 @@
-﻿namespace TaskManagementApp.WebUI.Areas.Admin.Controllers;
+﻿using System.Threading.Tasks;
+
+namespace TaskManagementApp.WebUI.Areas.Admin.Controllers;
 
 [Area("Admin")]
 [Authorize(Roles = "Admin")]
@@ -17,8 +19,34 @@ public class CategoryController : Controller
         return View(result.Data);
     }
 
+
+    [HttpGet]
     public IActionResult Create()
     {
         return View();
+    }
+
+    public async Task<IActionResult> Create(CategoryCreateRequst requst)
+    {
+        var result = await _mediator.Send(requst);
+        if (result.IsSuccess)
+        {
+            return RedirectToAction("List");
+        }
+        else
+        {
+            if (result.Errors?.Count > 0)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", result.ErrorMessage ?? "Bilinmeyen bir hata oluştu");
+            }
+            return View(requst);
+        }
     }
 }

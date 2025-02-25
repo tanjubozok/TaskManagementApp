@@ -13,4 +13,12 @@ public static class MappingExtensions
             Password = request.Password
         };
     }
+
+    public static Category ToMap(this CategoryCreateRequst requst)
+    {
+        return new Category
+        {
+            Definition = requst.Definition
+        };
+    }
 }

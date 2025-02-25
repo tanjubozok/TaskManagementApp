@@ -1,4 +1,4 @@
-﻿namespace TaskManagementApp.Application.Validators;
+﻿namespace TaskManagementApp.Application.Validators.LoginValidators;
 
 public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
 {

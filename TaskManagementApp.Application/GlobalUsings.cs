@@ -10,5 +10,6 @@ global using TaskManagementApp.Application.Extensions;
 global using TaskManagementApp.Application.Interfaces;
 global using TaskManagementApp.Application.Mapping;
 global using TaskManagementApp.Application.Requests;
-global using TaskManagementApp.Application.Validators;
+global using TaskManagementApp.Application.Validators.CategoryValidators;
+global using TaskManagementApp.Application.Validators.LoginValidators;
 global using TaskManagementApp.Domain.Entities;

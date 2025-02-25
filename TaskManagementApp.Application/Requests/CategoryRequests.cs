@@ -8,11 +8,11 @@ public record CategoryGetByIdRequest
     : IRequest<Result<CategoryListDto>>;
 
 public record CategoryUpdateRequest
-    (int Id, string Definition)
+    (int Id, string? Definition)
     : IRequest<Result<NoData>>;
 
 public record CategoryCreateRequst
-    (string Definition)
+    (string? Definition)
     : IRequest<Result<NoData>>;
 
 public record CategoryDeleteRequest
