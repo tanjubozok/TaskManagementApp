@@ -2,13 +2,13 @@
 
 public class CategoryUpdateHandler : IRequestHandler<CategoryUpdateRequest, Result<NoData>>
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public CategoryUpdateHandler(ICategoryRepository categoryRepository, IMapper mapper)
+    public CategoryUpdateHandler(IMapper mapper, IUnitOfWork unitOfWork)
     {
-        _categoryRepository = categoryRepository;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<NoData>> Handle(CategoryUpdateRequest request, CancellationToken cancellationToken)
@@ -17,13 +17,13 @@ public class CategoryUpdateHandler : IRequestHandler<CategoryUpdateRequest, Resu
         if (validationResult.IsValid)
         {
             var category = _mapper.Map<Category>(request);
-            var existingCategory = await _categoryRepository.GetByFilterAsync(x => x.Id == category.Id);
+            var existingCategory = await _unitOfWork.Category.GetByFilterAsync(x => x.Id == category.Id);
             if (existingCategory == null)
                 return new Result<NoData>(new NoData(), false, "Category not found", null);
 
             existingCategory.Definition = category.Definition;
-
-            var result = await _categoryRepository.UpdateAsync(existingCategory);
+            _unitOfWork.Category.Update(existingCategory);
+            var result = await _unitOfWork.SaveChangesAsync();
             if (result > 0)
                 return new Result<NoData>(new NoData(), true, null, null);
             else

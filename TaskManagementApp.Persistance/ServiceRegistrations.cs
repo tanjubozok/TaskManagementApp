@@ -9,7 +9,8 @@ public static class ServiceRegistrations
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
 
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        //services.AddScoped<ICategoryRepository, CategoryRepository>();
     }
 }

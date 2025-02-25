@@ -2,25 +2,26 @@
 
 public class CategoryGetByIdHandler : IRequestHandler<CategoryGetByIdRequest, Result<CategoryUpdateRequest>>
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public CategoryGetByIdHandler(ICategoryRepository categoryRepository, IMapper mapper)
+    public CategoryGetByIdHandler(IMapper mapper, IUnitOfWork unitOfWork)
     {
-        _categoryRepository = categoryRepository;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<CategoryUpdateRequest>> Handle(CategoryGetByIdRequest request, CancellationToken cancellationToken)
     {
-        var category = await _categoryRepository.GetByFilterNoTrackingAsync(x => x.Id == request.Id);
-        if (category == null)
+        var category = _mapper.Map<Category>(request);
+        var getCategory = await _unitOfWork.Category.GetByFilterNoTrackingAsync(x => x.Id == category.Id);
+        if (getCategory == null)
         {
             return new Result<CategoryUpdateRequest>(null!, false, "Category not found", null);
         }
         else
         {
-            var categoryUpdateRequest = _mapper.Map<CategoryUpdateRequest>(category);
+            var categoryUpdateRequest = _mapper.Map<CategoryUpdateRequest>(getCategory);
             return new Result<CategoryUpdateRequest>(categoryUpdateRequest, true, null, null);
         }
     }

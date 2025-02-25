@@ -9,17 +9,11 @@ public class CategoryRepository : ICategoryRepository
         _context = context;
     }
 
-    public async Task<int> CreateAsync(Category category)
-    {
-        await _context.Categories.AddAsync(category);
-        return await _context.SaveChangesAsync();
-    }
+    public async Task CreateAsync(Category category)
+        => await _context.Categories.AddAsync(category);
 
-    public async Task DeleteAsync(Category category)
-    {
-        _context.Categories.Remove(category);
-        await _context.SaveChangesAsync();
-    }
+    public void Delete(Category category)
+        => _context.Categories.Remove(category);
 
     public async Task<List<Category>> GetAllsync()
         => await _context.Categories.AsNoTracking().ToListAsync();
@@ -30,9 +24,6 @@ public class CategoryRepository : ICategoryRepository
     public async Task<Category?> GetByFilterNoTrackingAsync(Expression<Func<Category, bool>> filter)
         => await _context.Categories.AsNoTracking().SingleOrDefaultAsync(filter);
 
-    public async Task<int> UpdateAsync(Category category)
-    {
-        _context.Categories.Update(category);
-        return await _context.SaveChangesAsync();
-    }
+    public void Update(Category category)
+        => _context.Categories.Update(category);
 }

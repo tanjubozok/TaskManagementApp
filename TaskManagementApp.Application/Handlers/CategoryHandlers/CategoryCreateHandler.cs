@@ -2,13 +2,13 @@
 
 public class CategoryCreateHandler : IRequestHandler<CategoryCreateRequst, Result<NoData>>
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public CategoryCreateHandler(ICategoryRepository categoryRepository, IMapper mapper)
+    public CategoryCreateHandler(IMapper mapper, IUnitOfWork unitOfWork)
     {
-        _categoryRepository = categoryRepository;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<NoData>> Handle(CategoryCreateRequst request, CancellationToken cancellationToken)
@@ -17,7 +17,8 @@ public class CategoryCreateHandler : IRequestHandler<CategoryCreateRequst, Resul
         if (validationResult.IsValid)
         {
             var category = _mapper.Map<Category>(request);
-            var result = await _categoryRepository.CreateAsync(category);
+            await _unitOfWork.Category.CreateAsync(category);
+            var result = await _unitOfWork.SaveChangesAsync();
             if (result > 0)
                 return new Result<NoData>(new NoData(), true, null, null);
             else
