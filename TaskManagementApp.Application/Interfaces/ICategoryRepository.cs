@@ -4,12 +4,12 @@ public interface ICategoryRepository
 {
     Task<List<Category>> GetAllsync();
 
-    Task<int> CreateAsync(Category category);
+    Task CreateAsync(Category category);
 
     Task<Category?> GetByFilterNoTrackingAsync(Expression<Func<Category, bool>> filter);
     Task<Category?> GetByFilterAsync(Expression<Func<Category, bool>> filter);
 
-    Task DeleteAsync(Category category);
+    void Delete(Category category);
 
-    Task<int> UpdateAsync(Category category);
+    void Update(Category category);
 }
