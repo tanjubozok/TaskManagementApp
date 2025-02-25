@@ -10,4 +10,6 @@ public interface ICategoryRepository
     Task<Category?> GetByFilterAsync(Expression<Func<Category, bool>> filter);
 
     Task DeleteAsync(Category category);
+
+    Task<int> UpdateAsync(Category category);
 }

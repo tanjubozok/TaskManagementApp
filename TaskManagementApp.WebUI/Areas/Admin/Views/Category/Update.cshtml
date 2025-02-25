@@ -1,0 +1,58 @@
+﻿@model CategoryUpdateRequest
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    TempData["Title"] = "Kategori Düzenle";
+}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index">
+                <i class="fa-solid fa-house"></i>
+                Anasayfa
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-area="Admin" asp-controller="Category" asp-action="List">
+                <i class="fa-solid fa-layer-group"></i>
+                Kategori Listesi
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <i class="fa-solid fa-square-plus"></i>
+            @TempData["Title"]
+        </li>
+    </ol>
+</nav>
+
+<h3 class="mt-4">
+    <i class="fa-solid fa-square-plus"></i>
+    @TempData["Title"]
+</h3>
+
+<div class="mt-3">
+    <form asp-area="Admin" asp-controller="Category" asp-action="Update" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label asp-for="Definition" class="form-label">
+                Kategori Adı
+            </label>
+            <input asp-for="Definition" class="form-control" placeholder="Kategori adını giriniz" />
+            <span asp-validation-for="Definition" class="text-danger"></span>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-warning">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Düzenle
+            </button>
+            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Category" asp-action="List">
+                <i class="fa-solid fa-arrow-left"></i>
+                Geri Dön
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

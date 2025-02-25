@@ -49,9 +49,49 @@ public class CategoryController : Controller
         }
     }
 
+    [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
         await _mediator.Send(new CategoryDeleteRequest(id));
         return RedirectToAction("List");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Update(int id)
+    {
+        var result = await _mediator.Send(new CategoryGetByIdRequest(id));
+        if (result.IsSuccess)
+        {
+            return View(result.Data);
+        }
+        else
+        {
+            return RedirectToAction("List");
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(CategoryUpdateRequest request)
+    {
+        var result = await _mediator.Send(request);
+        if (result.IsSuccess)
+        {
+            return RedirectToAction("List");
+        }
+        else
+        {
+            if (result.Errors?.Count > 0)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", result.ErrorMessage ?? "Bilinmeyen bir hata oluştu");
+            }
+            return View(request);
+        }
     }
 }

@@ -5,7 +5,7 @@ public record CategoryListRequest()
 
 public record CategoryGetByIdRequest
     (int Id)
-    : IRequest<Result<CategoryListDto>>;
+    : IRequest<Result<CategoryUpdateRequest>>;
 
 public record CategoryUpdateRequest
     (int Id, string? Definition)

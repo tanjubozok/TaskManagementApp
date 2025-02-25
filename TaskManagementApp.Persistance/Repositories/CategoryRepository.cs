@@ -25,8 +25,14 @@ public class CategoryRepository : ICategoryRepository
         => await _context.Categories.AsNoTracking().ToListAsync();
 
     public async Task<Category?> GetByFilterAsync(Expression<Func<Category, bool>> filter)
-        => await _context.Categories.AsNoTracking().SingleOrDefaultAsync(filter);
+        => await _context.Categories.SingleOrDefaultAsync(filter);
 
     public async Task<Category?> GetByFilterNoTrackingAsync(Expression<Func<Category, bool>> filter)
-        => await _context.Categories.SingleOrDefaultAsync(filter);
+        => await _context.Categories.AsNoTracking().SingleOrDefaultAsync(filter);
+
+    public async Task<int> UpdateAsync(Category category)
+    {
+        _context.Categories.Update(category);
+        return await _context.SaveChangesAsync();
+    }
 }

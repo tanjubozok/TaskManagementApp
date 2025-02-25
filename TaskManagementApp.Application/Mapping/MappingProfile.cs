@@ -4,8 +4,9 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Category, CategoryListDto>();
-        CreateMap<CategoryUpdateRequest, Category>();
-        CreateMap<CategoryCreateRequst, Category>();
+        CreateMap<Category, CategoryListDto>().ReverseMap();
+        CreateMap<Category, CategoryGetByIdRequest>().ReverseMap();
+        CreateMap<Category, CategoryUpdateRequest>().ReverseMap();
+        CreateMap<Category, CategoryCreateRequst>().ReverseMap();
     }
 }
