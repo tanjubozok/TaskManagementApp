@@ -52,7 +52,9 @@
                                     <i class="fa-solid fa-table-list"></i>
                                     Detay
                                 </a>
-                                <a class="btn btn-danger btn-sm" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id">
+                                <a class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Silmek istediğinize emin misiniz?')"
+                                   asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id">
                                     <i class="fa-solid fa-trash"></i>
                                     Sil
                                 </a>
