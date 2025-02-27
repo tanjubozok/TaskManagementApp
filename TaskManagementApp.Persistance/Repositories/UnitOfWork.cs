@@ -5,6 +5,7 @@ public class UnitOfWork : IUnitOfWork
     private readonly TaskManagementContext _context;
     private ICategoryRepository _categoryRepository;
     private IUserRepository _userRepository;
+    private IAppTaskRepository _appTask;
 
     public UnitOfWork(TaskManagementContext context)
         => _context = context;
@@ -14,6 +15,9 @@ public class UnitOfWork : IUnitOfWork
 
     public IUserRepository User
         => _userRepository ??= new UserRepository(_context);
+
+    public IAppTaskRepository AppTask 
+        => _appTask ??= new AppTaskRepository(_context);
 
     public async ValueTask DisposeAsync()
         => await _context.DisposeAsync();

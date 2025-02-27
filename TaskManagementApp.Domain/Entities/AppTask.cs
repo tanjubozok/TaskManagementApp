@@ -6,7 +6,7 @@ public class AppTask : BaseEntity
     public string Description { get; set; } = null!;
     public bool State { get; set; }
 
-    public int AppUserId { get; set; }
+    public int? AppUserId { get; set; }
     public AppUser? AppUser { get; set; }
 
     public int CategoryId { get; set; }

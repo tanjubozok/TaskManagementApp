@@ -15,7 +15,7 @@ public class AppTaskConfiguration : IEntityTypeConfiguration<AppTask>
         builder.Property(x => x.Description).IsRequired(true);
         builder.Property(x => x.Description).HasMaxLength(2048);
 
-        builder.Property(x => x.AppUserId).IsRequired(true);
+        builder.Property(x => x.AppUserId).IsRequired(false);
 
         builder.Property(x => x.CategoryId).IsRequired(true);
 
