@@ -9,5 +9,8 @@ public class MappingProfile : Profile
         CreateMap<Category, CategoryUpdateRequest>().ReverseMap();
         CreateMap<Category, CategoryCreateRequst>().ReverseMap();
         CreateMap<Category, CategoryDeleteRequest>().ReverseMap();
+
+
+        CreateMap<AppTask, AppTaskListDto>().ReverseMap();
     }
 }

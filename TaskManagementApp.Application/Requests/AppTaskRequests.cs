@@ -1,3 +1,3 @@
 ﻿namespace TaskManagementApp.Application.Requests;
 
-public record AppTaskListRequest() : IRequest<List<AppTaskListDto>>;
+public record AppTaskListRequest() : IRequest<Result<List<AppTaskListDto>>>;

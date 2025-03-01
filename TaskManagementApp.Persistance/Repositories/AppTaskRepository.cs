@@ -15,6 +15,7 @@ public class AppTaskRepository : IAppTaskRepository
             .Include(x => x.Category)
             .Include(x => x.AppUser)
             .Include(x => x.TaskReports)
+            .AsNoTracking()
             .ToListAsync();
     }
 }
