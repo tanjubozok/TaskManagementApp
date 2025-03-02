@@ -1,43 +1,43 @@
 ﻿@model LoginRequst
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Giriş yap";
 }
 <h3 class="login-heading mb-4">
-    Login
+    @ViewData["Title"]
 </h3>
 <form asp-area="" asp-controller="Account" asp-action="Login" method="post">
     <div class="mb-3 text-danger" asp-validation-summary="All"></div>
     <div class="form-floating mb-3">
         <input class="form-control" asp-for="Username">
         <label asp-for="Username">
-            Username
+            Kullanıcı adı
         </label>
     </div>
     <div class="form-floating mb-3">
         <input type="password" class="form-control" asp-for="Password">
         <label asp-for="Password">
-            Password
+            Şifre
         </label>
     </div>
     <div class="form-check mb-3">
         <input class="form-check-input" type="checkbox" asp-for="RememberMe">
         <label class="form-check-label" asp-for="RememberMe">
-            Remember Me
+            Beni hatırla
         </label>
     </div>
     <div class="d-grid">
         <button class="btn btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">
             <i class="fa-solid fa-right-to-bracket"></i>
-            Login
+            @ViewData["Title"]
         </button>
         <div class="text-center">
             <button class="btn btn-info" asp-area="" asp-controller="Account" asp-action="Register">
                 <i class="fa-solid fa-user-plus"></i>
-                Register
+                Kayıt ol
             </button>
             <button class="btn btn-warning" asp-area="" asp-controller="Account" asp-action="ForgotPassword">
                 <i class="fa-solid fa-head-side-virus"></i>
-                Forgot password?
+                Şifremi unuttum?
             </button>
         </div>
     </div>

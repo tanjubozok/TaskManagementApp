@@ -1,51 +1,51 @@
 ﻿@model RegisterRequest
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Kayıt ol";
 }
 <h3 class="login-heading mb-4">
-    Register
+    @ViewData["Title"]
 </h3>
 <form asp-area="" asp-controller="Account" asp-action="Register" method="post">
     <div class="mb-3 text-danger" asp-validation-summary="All"></div>
     <div class="form-floating mb-3">
         <input class="form-control" asp-for="Username">
         <label asp-for="Username">
-            Username
+            Kullanıcı adı
         </label>
     </div>
     <div class="form-floating mb-3">
         <input class="form-control" asp-for="Name">
         <label asp-for="Name">
-            Name
+            Ad
         </label>
     </div>
     <div class="form-floating mb-3">
         <input class="form-control" asp-for="Surname">
         <label asp-for="Surname">
-            Surname
+            Soyad
         </label>
     </div>
     <div class="form-floating mb-3">
         <input type="password" class="form-control" asp-for="Password">
         <label asp-for="Password">
-            Password
+            Şifre
         </label>
     </div>
     <div class="form-floating mb-3">
         <input type="password" class="form-control" asp-for="RePassword">
         <label asp-for="RePassword">
-            rePassword
+            Şifre tekrar
         </label>
     </div>
     <div class="d-grid">
         <button class="btn btn-info btn-login text-uppercase fw-bold mb-2" type="submit">
             <i class="fa-solid fa-user-plus"></i>
-            Register
+            @ViewData["Title"]
         </button>
         <div class="text-center">
             <button class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Login">
                 <i class="fa-solid fa-right-to-bracket"></i>
-                Login
+                Giriş yap
             </button>
         </div>
     </div>
