@@ -16,7 +16,7 @@ public class UnitOfWork : IUnitOfWork
     public IUserRepository User
         => _userRepository ??= new UserRepository(_context);
 
-    public IAppTaskRepository AppTask 
+    public IAppTaskRepository AppTask
         => _appTask ??= new AppTaskRepository(_context);
 
     public async ValueTask DisposeAsync()

@@ -1,6 +1,6 @@
 ﻿namespace TaskManagementApp.Application.Handlers.AppTaskHandlers;
 
-public class AppTaskListHandler : IRequestHandler<AppTaskListRequest, Result<List<AppTaskListDto>>>
+public class AppTaskListHandler : IRequestHandler<AppTaskListRequest, PagedResult<AppTaskListDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -11,13 +11,11 @@ public class AppTaskListHandler : IRequestHandler<AppTaskListRequest, Result<Lis
         _mapper = mapper;
     }
 
-    public async Task<Result<List<AppTaskListDto>>> Handle(AppTaskListRequest request, CancellationToken cancellationToken)
+    public async Task<PagedResult<AppTaskListDto>> Handle(AppTaskListRequest request, CancellationToken cancellationToken)
     {
-        var appTasks = await _unitOfWork.AppTask.GetAllAsync();
+        var appTasks = await _unitOfWork.AppTask.GetAllAsync(request.ActivePage);
         var appTaskLists = _mapper.Map<List<AppTaskListDto>>(appTasks);
-        if (appTaskLists.Count == 0)
-            return new Result<List<AppTaskListDto>>(appTaskLists, false, "No data found", null);
 
-        return new Result<List<AppTaskListDto>>(appTaskLists, true, null, null);
+        return new PagedResult<AppTaskListDto>(appTaskLists, request.ActivePage, appTasks.PageSize, appTasks.TotalPages);
     }
 }

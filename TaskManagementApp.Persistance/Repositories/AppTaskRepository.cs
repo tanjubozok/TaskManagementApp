@@ -9,13 +9,13 @@ public class AppTaskRepository : IAppTaskRepository
         _context = context;
     }
 
-    public async Task<List<AppTask>> GetAllAsync()
+    public async Task<PagedData<AppTask>> GetAllAsync(int activePage, int pageSize = 10)
     {
         return await _context.AppTasks
             .Include(x => x.Category)
             .Include(x => x.AppUser)
             .Include(x => x.TaskReports)
             .AsNoTracking()
-            .ToListAsync();
+            .ToPagedAsync(activePage, pageSize);
     }
 }

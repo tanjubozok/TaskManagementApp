@@ -2,5 +2,5 @@
 
 public interface IAppTaskRepository
 {
-    Task<List<AppTask>> GetAllAsync();
+    Task<PagedData<AppTask>> GetAllAsync(int activePage, int pageSize = 10);
 }
