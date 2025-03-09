@@ -1,4 +1,4 @@
 ﻿namespace TaskManagementApp.Application.Requests;
 
-public record PagedRequest(int acitvePage);
-public record PagedSearchRequest(int activePage, string search);
+public record PagedRequest(int ActivePage);
+public record PagedSearchRequest(int ActivePage, string Search);

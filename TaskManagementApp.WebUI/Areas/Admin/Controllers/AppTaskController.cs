@@ -12,9 +12,9 @@ public class AppTaskController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> List(int activePage)
     {
-        var result = await _mediator.Send(new AppTaskListRequest());
+        var result = await _mediator.Send(new AppTaskListRequest(activePage));
         return View(result.Data);
     }
 }

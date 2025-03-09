@@ -1,3 +1,8 @@
 ﻿namespace TaskManagementApp.Application.Requests;
 
-public record AppTaskListRequest() : IRequest<Result<List<AppTaskListDto>>>;
+public record AppTaskListRequest : PagedRequest, IRequest<PagedResult<AppTaskListDto>>
+{
+    public AppTaskListRequest(int ActivePage) : base(ActivePage)
+    {
+    }
+}
